@@ -1,7 +1,13 @@
-import { Container, IconButton, Stack, Typography } from "@mui/material";
+import {
+  Container,
+  IconButton,
+  ListItem,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { ExpandMore, ShoppingCartOutlined } from "@mui/icons-material";
 
-import { styled, alpha } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
@@ -13,22 +19,23 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useState } from "react";
 
 import List from "@mui/material/List";
-import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { useTheme } from "@emotion/react";
 
 const Search = styled("div")(({ theme }) => ({
+  flexGrow: 0.4,
   position: "relative",
   borderRadius: theme.shape.borderRadius,
   border: "1px solid #777",
   "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+    border: "1px solid #333",
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
-  width: "100%",
+  // width: "100%",
+  minWidth: "300px",
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(3),
     width: "auto",
@@ -73,7 +80,7 @@ const options = ["All Categories", "CAR", "Clothes", "Electronics"];
 
 const Header2 = () => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedIndex, setSelectedIndex] = useState(1);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const open = Boolean(anchorEl);
   const handleClickListItem = (event) => {
     setAnchorEl(event.currentTarget);
@@ -93,12 +100,17 @@ const Header2 = () => {
   return (
     <Container sx={{ my: 3, display: "flex", justifyContent: "space-between" }}>
       <Stack alignItems={"center"}>
-        <ShoppingCartOutlined>
-          <Typography variant="body2">E-commerce</Typography>
-        </ShoppingCartOutlined>
+        <ShoppingCartOutlined />
+        <Typography variant="body2">E-commerce</Typography>
       </Stack>
 
-      <Search sx={{ borderRadius: "22px", display: "flex" }}>
+      <Search
+        sx={{
+          borderRadius: "22px",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>
@@ -119,7 +131,7 @@ const Header2 = () => {
               p: "0",
             }}
           >
-            <ListItemButton
+            <ListItem
               id="lock-button"
               aria-haspopup="listbox"
               aria-controls="lock-menu"
@@ -128,16 +140,16 @@ const Header2 = () => {
               onClick={handleClickListItem}
             >
               <ListItemText
-                className="border"
+                // className="border"
                 sx={{
-                  width: 95,
+                  width: 93,
                   textAlign: "center",
-                  "&hover": { cursor: "pointer" },
+                  "&:hover": { cursor: "pointer" },
                 }}
                 secondary={options[selectedIndex]}
               />
               <ExpandMore sx={{ fontSize: "16px" }} />
-            </ListItemButton>
+            </ListItem>
           </List>
           <Menu
             id="lock-menu"
@@ -151,6 +163,7 @@ const Header2 = () => {
           >
             {options.map((option, index) => (
               <MenuItem
+                sx={{ fontSize: "13px" }}
                 key={option}
                 selected={index === selectedIndex}
                 onClick={(event) => handleMenuItemClick(event, index)}
