@@ -12,7 +12,6 @@ import {
 const NavLink = (props) => {
   return (
     <Box
-      className="border"
       sx={{
         position: "relative",
         display: "flex",
