@@ -1,8 +1,4 @@
-import {
-  ExpandMore,
-  KeyboardArrowRightOutlined,
-  Translate,
-} from "@mui/icons-material";
+import { ExpandMore, KeyboardArrowRightOutlined } from "@mui/icons-material";
 import {
   Box,
   List,
@@ -13,28 +9,36 @@ import {
   Typography,
 } from "@mui/material";
 
-const NavLink = () => {
+const NavLink = (props) => {
   return (
     <Box
+      className="border"
       sx={{
         position: "relative",
         display: "flex",
         alignItems: "center",
-        ":hover .show-when-hover": { display: "block" },
+        ":hover .show-when-hover": {
+          visibility: "visible",
+          opacity: 1,
+          top: "100%",
+        },
+        ":hover": { cursor: "pointer" },
       }}
     >
-      <Typography variant="body1">Home</Typography>
+      <Typography variant="body1">{props.title}</Typography>
       <ExpandMore sx={{ fontSize: "16px", ml: 1 }} />
 
       <Box
         className="show-when-hover"
         sx={{
           position: "absolute",
-          top: "100%",
+          top: "-50%",
           left: "50%",
           minWidth: "170px",
           transform: "TranslateX(-50%)",
-          display: "none",
+          visibility: "hidden",
+          opacity: 0,
+          transition: "0.2s all",
         }}
       >
         <Paper sx={{ mt: 2 }}>

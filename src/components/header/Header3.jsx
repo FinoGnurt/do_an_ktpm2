@@ -11,6 +11,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Stack,
   Typography,
   useMediaQuery,
   useTheme,
@@ -73,6 +74,21 @@ const Header3 = () => {
     setExpanded(newExpanded ? panel : null);
   };
 
+  const navLink = () => {
+    return [
+      {
+        title: [
+          "Home",
+          "Mega Menu",
+          "Full Screen Menu",
+          "Pages",
+          "User Account",
+          "Vendor Account",
+        ],
+      },
+    ];
+  };
+
   return (
     <Container
       sx={{
@@ -91,6 +107,7 @@ const Header3 = () => {
           onClick={handleClick}
           sx={{
             width: 222,
+            height: "40px",
             // @ts-ignore
             bgcolor: theme.palette.myColor.main,
             color: theme.palette.text.primary,
@@ -149,7 +166,13 @@ const Header3 = () => {
         </Menu>
       </Box>
 
-      <NavLink />
+      {useMediaQuery(`(min-width: 1101px)`) && (
+        <Stack gap={3} direction={"row"} alignItems={"center"}>
+          {navLink()[0].title.map((i, e) => {
+            return <NavLink key={e} title={i} />;
+          })}
+        </Stack>
+      )}
 
       {useMediaQuery(`(max-width: 1100px)`) && (
         <IconButton onClick={toggleDrawer("top", true)}>
