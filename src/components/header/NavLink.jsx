@@ -38,6 +38,7 @@ const NavLink = (props) => {
           visibility: "hidden",
           opacity: 0,
           transition: "0.2s all",
+          zIndex: 50,
         }}
       >
         <Paper sx={{ mt: 2 }}>

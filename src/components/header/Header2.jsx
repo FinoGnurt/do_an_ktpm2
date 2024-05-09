@@ -38,7 +38,7 @@ const Search = styled("div")(({ theme }) => ({
   minWidth: "300px",
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(3),
-    width: "auto",
+    width: "330px",
   },
 }));
 
