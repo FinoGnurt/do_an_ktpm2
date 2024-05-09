@@ -1,7 +1,7 @@
 import { Box, Button, Container, Link, Stack, Typography } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./slider.css";
@@ -17,10 +17,16 @@ const Hero = () => {
   return (
     <Container sx={{ mt: 2.5, display: "flex", alignItems: "center", gap: 2 }}>
       <Swiper
+        spaceBetween={15}
+        loop={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         pagination={{
           dynamicBullets: true,
         }}
-        modules={[Pagination]}
+        modules={[Autoplay, Pagination]}
         className="mySwiper"
       >
         {bannerSlider.map((slider, index) => (
