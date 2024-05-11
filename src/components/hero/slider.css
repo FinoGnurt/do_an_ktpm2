@@ -14,6 +14,14 @@
   align-items: center;
 }
 
+.swiper-slide:hover {
+  cursor: grab;
+}
+
+.parent-slider:active {
+  cursor: grabbing;
+}
+
 .swiper-slide img {
   display: block;
   width: 100%;

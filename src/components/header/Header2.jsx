@@ -1,28 +1,28 @@
+import { useState } from "react";
 import {
+  Badge,
   Container,
   IconButton,
+  InputBase,
+  List,
   ListItem,
+  ListItemText,
+  Menu,
+  MenuItem,
   Stack,
   Typography,
+  styled,
+  useTheme,
 } from "@mui/material";
-import { ExpandMore, ShoppingCartOutlined } from "@mui/icons-material";
 
-import { styled } from "@mui/material/styles";
+import {
+  ExpandMore,
+  Person2Outlined,
+  ShoppingCart,
+  ShoppingCartOutlined,
+} from "@mui/icons-material";
 
 import SearchIcon from "@mui/icons-material/Search";
-import InputBase from "@mui/material/InputBase";
-
-import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
-
-import Badge from "@mui/material/Badge";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { useState } from "react";
-
-import List from "@mui/material/List";
-import ListItemText from "@mui/material/ListItemText";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import { useTheme } from "@emotion/react";
 
 const Search = styled("div")(({ theme }) => ({
   flexGrow: 0.4,
@@ -177,11 +177,11 @@ const Header2 = () => {
       <Stack direction={"row"} alignItems={"center"}>
         <IconButton aria-label="cart">
           <StyledBadge badgeContent={4} color="primary">
-            <ShoppingCartIcon />
+            <ShoppingCart />
           </StyledBadge>
         </IconButton>
         <IconButton>
-          <Person2OutlinedIcon />
+          <Person2Outlined />
         </IconButton>
       </Stack>
     </Container>

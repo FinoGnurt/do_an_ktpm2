@@ -3,6 +3,7 @@ import {
   Accordion,
   AccordionSummary,
   Box,
+  Button,
   Container,
   Drawer,
   IconButton,
@@ -11,25 +12,26 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Menu,
+  MenuItem,
   Stack,
   Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 
-import MenuIcon from "@mui/icons-material/Menu";
-import WindowIcon from "@mui/icons-material/Window";
-import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
 import {
   Close,
   ExpandMore,
+  KeyboardArrowRightOutlined,
   LaptopChromebookOutlined,
   MenuBookOutlined,
   SportsEsportsOutlined,
+  Window,
 } from "@mui/icons-material";
+
+import MenuIcon from "@mui/icons-material/Menu";
+
 import NavLink from "./NavLink";
 
 const menuLink = () => [
@@ -96,6 +98,7 @@ const Header3 = () => {
         alignItems: "center",
         justifyContent: "space-between",
         mt: 5,
+        mb: 2.5,
       }}
     >
       <Box>
@@ -113,12 +116,12 @@ const Header3 = () => {
             color: theme.palette.text.primary,
           }}
         >
-          <WindowIcon />
+          <Window />
           <Typography sx={{ padding: "0", textTransform: "capitalize", mx: 1 }}>
             Categories
           </Typography>
           <Box flexGrow={1} />
-          <KeyboardArrowRightOutlinedIcon />
+          <KeyboardArrowRightOutlined />
         </Button>
         <Menu
           id="basic-menu"
