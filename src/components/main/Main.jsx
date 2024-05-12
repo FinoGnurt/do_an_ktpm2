@@ -7,6 +7,8 @@ import {
   CardContent,
   CardMedia,
   Container,
+  Dialog,
+  IconButton,
   Rating,
   Stack,
   ToggleButton,
@@ -15,6 +17,8 @@ import {
   useTheme,
 } from "@mui/material";
 import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
+import { Close } from "@mui/icons-material";
+import ProductDetail from "./ProductDetail";
 
 const listProduct = [
   {
@@ -36,6 +40,16 @@ const Main = () => {
   };
 
   const theme = useTheme();
+
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <Container sx={{ py: 9 }}>
       <Stack
@@ -135,7 +149,11 @@ const Main = () => {
               </CardContent>
 
               <CardActions sx={{ justifyContent: "space-between" }}>
-                <Button sx={{ textTransform: "capitalize" }} size="large">
+                <Button
+                  onClick={handleClickOpen}
+                  sx={{ textTransform: "capitalize" }}
+                  size="large"
+                >
                   <AddShoppingCartOutlinedIcon
                     sx={{ mr: 1 }}
                     fontSize="small"
@@ -155,6 +173,29 @@ const Main = () => {
           );
         })}
       </Stack>
+
+      <Dialog
+        sx={{ ".MuiPaper-root": { minWidth: { xs: "100%", md: 800 } } }}
+        className="border"
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <IconButton
+          sx={{
+            ":hover": { rotate: "180deg", color: "#ff4848" },
+            transition: "0.5s",
+            position: "absolute",
+            top: 0,
+            right: 0,
+          }}
+          onClick={handleClose}
+        >
+          <Close />
+        </IconButton>
+        <ProductDetail />
+      </Dialog>
     </Container>
   );
 };
