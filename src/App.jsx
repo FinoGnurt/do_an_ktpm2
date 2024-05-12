@@ -7,6 +7,8 @@ import { ColorModeContext, useMode } from "./theme";
 import Hero from "./components/hero/Hero";
 import IconSection from "./components/hero/IconSection";
 import Main from "./components/main/Main";
+import Footer from "./components/footer/Footer";
+import ScrollToTop from "./components/scroll/ScrollToTop";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -32,9 +34,12 @@ function App() {
         >
           <Hero />
           <IconSection />
+          <Main />
         </Box>
 
-        <Main />
+        <Footer />
+
+        <ScrollToTop />
       </ThemeProvider>
     </ColorModeContext.Provider>
   );

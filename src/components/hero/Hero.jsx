@@ -43,7 +43,7 @@ const Hero = () => {
 
                   [theme.breakpoints.down("sm")]: {
                     pt: 4,
-                    pb: 6,
+                    pb: 4,
                   },
                 }}
               >
