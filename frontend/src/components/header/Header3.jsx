@@ -187,7 +187,7 @@ const Header3 = () => {
         open={state["top"]}
         onClose={toggleDrawer("top", false)}
         sx={{
-          ".MuiPaper-root.css-1sozasi-MuiPaper-root-MuiDrawer-paper": {
+          ".css-1sozasi-MuiPaper-root-MuiDrawer-paper": {
             height: "100%",
           },
         }}
