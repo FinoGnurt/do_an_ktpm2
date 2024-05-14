@@ -21,23 +21,18 @@ import { Close } from "@mui/icons-material";
 import ProductDetail from "./ProductDetail";
 import { useGetproductByNameQuery } from "../../redux/product";
 
-const listProduct = [
-  {
-    text: "aaaa",
-  },
-  {
-    text: "bbb",
-  },
-  {
-    text: "ccc",
-  },
-];
-
 const Main = () => {
-  const [alignment, setAlignment] = useState("web");
+  //API Strapi
+  const allProductsAPI = "products?populate=*";
+  const menCategoryAPI = "products?populate=*&filters[category][$eq]=men";
+  const womenCategoryAPI = "products?populate=*&filters[category][$eq]=women";
 
-  const handleChange = (event, newAlignment) => {
-    setAlignment(newAlignment);
+  const [categoryAPI, setCategoryAPI] = useState(allProductsAPI);
+
+  const handleActiveButton = (event, activeButton) => {
+    if (activeButton !== null) {
+      setCategoryAPI(activeButton);
+    }
   };
 
   const theme = useTheme();
@@ -53,7 +48,16 @@ const Main = () => {
   };
 
   //Redux
-  const { data, error, isLoading } = useGetproductByNameQuery("products");
+  const { data, error, isLoading } = useGetproductByNameQuery(categoryAPI);
+
+  if (isLoading) {
+    return <Typography variant="h6">LOADING.................</Typography>;
+  }
+
+  if (error) {
+    // @ts-ignore
+    return <Typography variant="h6">{error.message}</Typography>;
+  }
 
   if (data) {
     return (
@@ -73,9 +77,9 @@ const Main = () => {
           </Box>
           <ToggleButtonGroup
             color="error"
-            value={alignment}
+            value={categoryAPI}
             exclusive
-            onChange={handleChange}
+            onChange={handleActiveButton}
             aria-label="Platform"
             sx={{
               ".Mui-selected": {
@@ -88,21 +92,21 @@ const Main = () => {
             <ToggleButton
               sx={{ color: theme.palette.text.primary }}
               className="myButton"
-              value="web"
+              value={allProductsAPI}
             >
               All Products
             </ToggleButton>
             <ToggleButton
               sx={{ mx: "16px !important", color: theme.palette.text.primary }}
               className="myButton"
-              value="android"
+              value={menCategoryAPI}
             >
               Men category
             </ToggleButton>
             <ToggleButton
               sx={{ color: theme.palette.text.primary }}
               className="myButton"
-              value="ios"
+              value={womenCategoryAPI}
             >
               Women category
             </ToggleButton>
@@ -130,7 +134,11 @@ const Main = () => {
                 <CardMedia
                   sx={{ height: 277, transition: "0.35s" }}
                   className="hoverImg"
-                  image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                  // @ts-ignore
+                  // image={`${import.meta.env.VITE_BASE_URL}${
+                  //   item.attributes.productImg.data[0].attributes.url
+                  // }`}
+                  image={item.attributes.productImg.data[0].attributes.url}
                   title="green iguana"
                 />
 
@@ -145,7 +153,7 @@ const Main = () => {
                     </Typography>
 
                     <Typography variant="subtitle1" component={"p"}>
-                      {item.attributes.productPrice}
+                      ${item.attributes.productPrice}
                     </Typography>
                   </Stack>
                   <Typography variant="body2" color="text.secondary">
